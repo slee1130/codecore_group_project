@@ -1,0 +1,59 @@
+
+<% if @user.errors.any? %>
+    <ul>
+        <% @user.errors.full_messages.each do |msg|%>
+        <li><%=msg%></li>
+        <%end%>
+    </ul>
+<%end%>
+
+
+
+<%= form_with model: @user, local: true do |f|%>
+    <div class="ui equal width form">
+    <div>
+        <%=f.label :img_url %>
+        <%=f.text_field :img_url %>
+    </div>
+    <div>
+        <%=f.label :first_name %>
+        <%=f.text_field :first_name %>
+    </div>
+    <div>
+        <%=f.label :last_name %>
+        <%=f.text_field :last_name %>
+    </div>
+    <div>
+        <%=f.label :email %>
+        <%=f.email_field :email %>
+    </div>
+   
+
+    <%if admin_signed_in?%>
+
+    <div>
+        <%= f.label :active %><br />
+        <%= f.label :active, "Active", :value => "true"  %>
+        <%= f.radio_button :active, true %>
+        <%= f.label :active, "Inactive", :value => "false" %>
+        <%= f.radio_button :active, false, :checked => true %>
+    </div>
+    </div>
+    <%= f.submit "Save",class:"ui primary button" %>
+    <%= link_to 'Delete', user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
+    <% end %>
+
+    <p>
+
+    </div>
+    <%= f.submit "Update Account", class:"ui primary button" %>
+
+    <%#= link_to 'Delete', user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
+
+    <%= link_to "Update Password", password_path(current_user) %> 
+  
+   
+    
+<% end %>
+
+

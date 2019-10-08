@@ -1,0 +1,29 @@
+<p>User Courses</p>
+
+<div>
+  <div>
+    <h2>Active</h2>
+      <% @active_courses.each do |course| %>
+        <div>
+            <%= course.id %>
+            <%= course.name %>
+            <%#= link_to user.full_name, user_path(user)%>
+        </div>
+        <% end %>
+      </div>  
+  </div>
+
+
+  <div>
+    <h2>Archived</h2>
+    <% @archived_courses.each do |course| %>
+      <div>
+          <%= course.id %>
+        <%= course.name %>
+        <%#= link_to user.full_name, user_path(user)%>
+      </div>
+    <% end %>
+  </div>  
+</div>
+
+

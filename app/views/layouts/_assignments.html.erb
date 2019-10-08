@@ -1,0 +1,20 @@
+<div class="card">
+  <div class='card-header'>
+    <h2>Assignments</h2>
+  </div>
+  <div class='card-content'>
+    <% @assignments[0..3].each do |assignment| %>
+      <div class="assignment-card" onClick="() => {window.location.href = '/course_assignments/<%= assignment.id %>'}">
+        <h2><%= assignment.assignment.name %></h2>
+        <h3><%= assignment.course.name %></h3>
+        <h3>
+          <% if assignment.due_date > Time.now %>
+            <p>Due in <%= assignment.due_date %> </p>
+          <% else %>
+            <p>Due <%= assignment.due_date %> ago</p>
+          <% end %>
+        </h3>
+      </div>
+    <% end %>
+  </div>
+</div>

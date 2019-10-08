@@ -1,0 +1,207 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+
+ */
+@import "semantic-ui"
+
+
+// Colors
+$body-blue: #e0f0ff
+$bg-blue: #e8f4ff
+$card-container: #bddfff
+$container-color: #8fc9ff
+$content-shadow-color: #505563
+$button-color: #5694c7
+
+// Site skin
+body
+  display: flex
+  flex-wrap: wrap
+  background-color: $body-blue
+  min-height: 100vh
+
+.app-header
+  width: 100%
+
+.free-column
+  width: 12.5%
+
+.content-container
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+  box-sizing: border-box
+  min-width: 75%
+  min-height: 100vh
+  padding: 3em
+  background-color: $bg-blue
+
+.card-tier
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: space-around
+  margin: 2.5em
+
+// Base Templates
+.card
+  display: flex
+  flex-direction: column
+  justify-content: left
+  background-color: $card-container
+  box-shadow: 5px 5px 3px $content-shadow-color
+  box-sizing: border-box
+  border-radius: 0.5em
+  width: 40%
+  padding: 0.5em 0.5em 1em
+  margin: 1em
+
+.card-header
+  padding: 1em
+
+.card-content
+  flex-direction: column
+  background-color: $container-color
+  border-radius: 0.5em
+  padding: 0.5em
+  margin: 0.5em
+
+.content
+  flex-direction: column
+  justify-content: left
+  background-color: white
+  box-sizing: border-box
+  border-radius: 0.1em
+  padding: 1em
+  margin: 0.5em
+
+.content-row
+  flex-direction: column
+  height: 23%
+  margin: 1%
+
+.form-field
+  display: flex
+  flex-direction: column
+  width: 51%
+  margin: 0.8em
+
+// Navigation Bar
+.nav-container
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.nav-item
+  display: flex
+  flex-direction: row
+  justify-content: center
+
+.nav-current-view
+  font-weight: bold
+
+// Independent Cards
+.independent-card
+  @extend .card
+  display: inline-block
+  width: auto
+
+// Sign-In
+.login
+  display: flex
+  flex-direction: column
+  justify-content: center
+
+.sign-in-card
+  @extend .card
+
+.sign-in-card-header
+  padding: 1em 0em 0em 1em
+
+.sign-in-card-content
+  @extend .card-content
+  justify-content: center
+
+.sign-in-card-content > form
+  display: flex
+  justify-content: center
+  flex-wrap: wrap
+
+.sign-in-field
+  @extend .form-field
+
+input[name=commit]
+  background-color: $button-color
+  flex-direction: column
+  width: 3em
+  box-sizing: border-box
+  cursor: pointer
+  box-shadow: 2px 2px $content-shadow-color
+  color: white
+  border: none
+  justify-content: center
+  border-radius: 0.3em
+  transition: 0.1s
+  padding: 0.3em
+  margin: 0.2em
+
+input[type=submit]:hover
+  box-shadow: 1px 1px $content-shadow-color
+  transform: translateX(0.5px) translateY(0.5px)
+
+
+// Member Cards
+.member-card
+  @extend .card
+  transition: 0.3s
+
+.member-card:hover
+  transform: translateX(-1px) translateY(-1px) 
+  transition: 0.3s
+  box-shadow: 6px 6px 3.5px $content-shadow-color
+
+// Calendar Cards
+.schedule-card
+  @extend .member-card
+  min-width: 90%
+
+.schedule-day-container
+  display: flex
+  flex-wrap: wrap
+  background-color: white
+  box-sizing: border-box
+  border-radius: 0.15em
+  width: 8em
+  height: 6em
+
+.schedule-day-content
+  flex-direction: column
+
+.schedule-day-content-text
+  padding: 0em 3em 0em 0em
+
+// Reaching into simple_calendar source to custom, tr, td, table.table.table-striped
+tr
+  text-align: center
+
+.calendar-heading
+  display: none
+
+// Other
+ol, ul
+  list-style: none
+
+small
+  color: grey

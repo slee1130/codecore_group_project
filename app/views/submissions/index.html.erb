@@ -1,0 +1,41 @@
+<article class="submissions-index">
+  <div class='card-tier'>
+    <h1>Submissions for Course Assignment <%= @course_assignment.id %></h1>
+    <h2><%= @course_assignment.assignment.name %></h2>
+    <p><%= @course_assignment.assignment.description %></p>
+
+    <h3>Marked out of <%= @course_assignment.maximum_score %></h3>
+
+    <% @submissions.each do |submission| %>
+        <div class="submission">
+            <% if submission.respond_to? :submission_url %>
+                <a href=<%= submission.submission_url %>><%= get_host_without_www(submission.submission_url) %></a>
+            <% else %>
+                <p>No URL for this assignment</p>
+            <% end %>
+            <p>
+                Submitted by <%= submission.submitter.full_name %> on 
+                <%= submission.submission_date.strftime('%H:%M %a, %d %b %Y') %>
+            </p>
+          
+            <% if is_marked?(submission: submission) %>
+                <div id="submission-<%= submission.id %>" style="display: none">
+                    <h4><%= submission.marker.full_name %> gave this assignment
+                        <%= submission.score %> / <%= submission.course_assignment.maximum_score %>
+                        (<%= submission.grade %>%)
+                        <%= link_to 'Change', course_course_assignment_submission_edit_grade_path(submission.course, submission.course_assignment, submission) %>
+                        <%= link_to 'Remove', course_course_assignment_submission_destroy_grade_path(submission.course, submission.course_assignment, submission), method: "DELETE", data: {confirm: "Are you sure you want to remove this grade?"} %>
+                    </h4>
+                    <p> Feedback: <br />"<%= submission.feedback %>"</p>
+                </div>
+                <a onclick="document.getElementById(`submission-<%= submission.id %>`).style.display = document.getElementById(`submission-<%= submission.id %>`).style.display === 'none' ? '' : 'none'">
+                    Toggle feedback
+                </a>
+            <% else %>
+                <%= link_to 'Grade this submission', course_course_assignment_submission_new_grade_path(submission.course, submission.course_assignment, submission) %>
+            <% end %>
+        </div>
+    <% end %>
+
+
+</article>

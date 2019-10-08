@@ -1,0 +1,10 @@
+<article class="submit-submission">
+    <%= form_for(@submission, url: course_course_assignment_submissions_path(@submission.course, @submission.course_assignment)) do |f| %>
+        <div>
+            <%= f.label :submission_url %>
+            <%= f.text_field :submission_url %>
+        </div>
+        <%= f.submit "Submit!" %>
+    <% end %>
+      
+</article>

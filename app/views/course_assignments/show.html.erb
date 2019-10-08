@@ -1,0 +1,55 @@
+<article class="course-assignment-show">
+    <h1><%= link_to @course_assignment.course.name, course_path(@course_assignment.course.name) %></h1>
+
+    <h2><%= @course_assignment.assignment.name %></h1>
+    <p><%= @course_assignment.assignment.description %></p>
+
+    <p>Assigned <%= distance_of_time_in_words(Time.now, @course_assignment.assign_date) %> ago (<%= @course_assignment.assign_date.strftime('%H:%M %a, %d %b %Y') %>)</p>
+    <p>
+        <% if @course_assignment.due_date > Time.now %>
+            Due in <%= distance_of_time_in_words(Time.now, @course_assignment.due_date) %>
+        <% else %>
+            Due <%= @course_assignment.due_date %> ago
+        <% end %>
+        (<%= @course_assignment.due_date.strftime('%H:%M %a, %d %b %Y') %>)
+    </p>
+
+    <% if current_user.current_role == "student" %>
+
+        <h2>Your Submission</h2>
+        <div class="submission">
+            <% submission = find_submission(current_user.current_course_role, @course_assignment) %>
+            <% if submission %>
+                <div class="submission">
+                    <% if submission.respond_to? :submission_url %>
+                        Link: <a href=<%= submission.submission_url %>><%= get_host_without_www(submission.submission_url) %></a>
+                    <% else %>
+                        <p>No URL for this assignment</p>
+                    <% end %>
+                    <p>
+                        Submitted on
+                        <%= submission.submission_date.strftime('%H:%M %a, %d %b %Y') %>
+                    </p>
+                    <%= link_to 'Remove Submition', course_course_assignment_submission_path(submission.course, submission.course_assignment, submission), method: "DELETE", data: {confirm: "Are you sure you want to remove this submission?"} %>
+                </div>
+            <% else %>
+                <p>You haven't submitted anything for this assignment yet.</p>
+                <%= link_to 'Submit Something?', new_course_course_assignment_submission_path(@course_assignment.course, @course_assignment) %>
+            <% end %>
+        </div>
+
+        <% if is_marked?(@course_assignment) %>
+            <p>You got: <%= @course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).grade %></p>
+            <small>Marked by <%= CourseRole.find(@course_assignment.submissions.find_by(course_role_submitter_id: current_user.id).course_role_marker_id).user.full_name %></small>
+        <% else %>
+            <p>This assignment has not yet been marked...</p>
+        <% end %>
+    <% else %>
+        <%= link_to 'View Submissions', course_course_assignment_submissions_path(@course_assignment.course, @course_assignment) %>
+    <% end %>
+
+
+    <%= link_to 'Edit', edit_course_course_assignment_path(@course_assignment.course, @course_assignment) %>
+    <%= link_to 'Unassign', course_course_assignment_path(@course_assignment.course, @course_assignment), method: :delete, data: {confirm: "Are you sure you want to unassign this?"}%>
+
+</article>

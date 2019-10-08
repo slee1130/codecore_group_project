@@ -1,0 +1,39 @@
+<h4>User Detail</h4>
+
+<div>
+
+<%= image_tag "#{@user.img_url}"%>
+
+<p> First name:
+<%= @user.first_name %> </p>
+
+<p> Last name: 
+<%= @user.last_name %> </p>
+
+<p> Role: 
+<%= @user.current_role %> </p>
+
+<p> Courses:
+  <% @user.course_roles.map(&:course).each do |course|  %>
+  <p> - <%= link_to course.name, course_path(course) %> </p>
+<% end %>
+
+<p> Email: 
+<p> <%= @user.email %> </p>
+
+<p> Status:
+  <% if @user.status %>
+    active
+  <% else %>
+    inactive
+  <% end %>
+  </p>
+
+
+
+
+</div>
+
+<%= link_to 'Add Role', new_role_path(@user) %>
+<%= link_to "Edit Profile", edit_user_path(@user) %>
+<%= link_to "Change Password", password_path(@user)%>

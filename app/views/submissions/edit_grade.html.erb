@@ -1,0 +1,22 @@
+<article class="edit-submission-grade">
+  <div class='card'>
+    <div class='card-header'>
+      <h2>Edit Submission Grade</h2>
+    </div>
+    <div class='card-content'>
+      <%= form_for(@submission, url: course_course_assignment_submission_update_grade_path(@submission.course, @submission.course_assignment, @submission)) do |f| %>
+      <div>
+        <%= f.label :score %>
+        <%= f.select :score, 0..@submission.max_score %>
+      </div>
+      <div>
+        <%= f.label :feedback %>
+        <%= f.text_area :feedback %>
+      </div>
+      <div class='form-field'>
+        <%= f.submit "Update!" %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</article>

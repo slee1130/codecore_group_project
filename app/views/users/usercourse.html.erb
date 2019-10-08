@@ -1,0 +1,38 @@
+<div class="ui card">
+    <div class="content">
+    <% @active_courses.each do |active_course|%>
+        <div>
+        <h3>Course: <%= @course.name %></h3>
+        <h3>Curriculum:<%= @course.description %></h3>
+        <p>Start Date: <%= @course.start_date %></p>
+        <p>End Date: <%= @course.end_date %></p>
+        <p>Status: <%= @course.status %></p>
+        </div>
+    <%end%>
+
+    <%if admin_signed_in?%>
+    <%= link_to 'Edit', edit_course_path(@course) %>
+    <%= link_to 'Delete', course_path(@course), method: :delete, data: {confirm: "Are you sure?"} %>
+    <%end%>
+    </div>
+</div>
+
+
+<div class="ui card">
+     <div class="content">
+    <% @inactive_course.each do |inactive_course|%>
+      <div>
+        <h3>Course: <%= @course.name %></h3>
+        <h3>Curriculum:<%= @course.description %></h3>
+        <p>Start Date: <%= @course.start_date %></p>
+        <p>End Date: <%= @course.end_date %></p>
+        <p>Status: <%= @course.status %></p>
+        </div>
+    <% end %>
+
+    <%if admin_signed_in?%>
+    <%= link_to 'Edit', edit_course_path(@course) %>
+    <%= link_to 'Delete', course_path(@course), method: :delete, data: {confirm: "Are you sure?"} %>
+    <%end%>
+    </div>
+</div>

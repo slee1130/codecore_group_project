@@ -1,0 +1,16 @@
+<article class="new-role">
+    <%= form_for(@role, url: create_role_path(@user), method: :post) do |f| %>
+    <div>    
+        <%= f.label :role %>
+        <%= f.select :role, ["student", "teacher"] %>
+    </div>
+    <div>
+        <%= f.label :course_id %>
+        <%= f.select :course_id, @courses.collect {|c| [c.name, c.id] } %>
+    </div>
+
+    <%= f.submit "Add role "%>
+
+    <% end %>
+      
+</article>

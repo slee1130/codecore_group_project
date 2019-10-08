@@ -1,0 +1,7 @@
+<% @assignments.each do |assignment| %>
+    <div>
+        <h2><%= link_to assignment.name, assignment_path(assignment) %></h2>
+        <p><%= assignment.description %></p>
+        <hr>
+    </div>
+<% end %>

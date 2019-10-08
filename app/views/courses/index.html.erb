@@ -1,0 +1,10 @@
+<h3>All Courses</h3>
+<div class="courses">
+<h2>Courses</h2>
+  <% @courses.map do |course| %>
+    <div class="course-item">
+      <p><%= course.name %></p>
+      <small><%= link_to 'View details', course_path(course) %></small>
+    </div>
+  <% end %>
+</div>

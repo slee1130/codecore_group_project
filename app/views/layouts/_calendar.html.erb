@@ -1,0 +1,42 @@
+<div class='schedule-card'>
+  <div class='card-header'>
+    <h2>Schedule</h2>
+  </div>
+  <div class='card-content'>
+  <%= week_calendar number_of_weeks: 2 do |date| %>
+    <div class='schedule-day-container'>
+      <div class='content-row'>
+        <div class='schedule-day-content'>
+          <%= date.day %>
+        </div>
+        <div class='schedule-day-content'>
+        </div>
+      </div>
+      <div class='content-row'>
+        <div class='schedule-day-content'>
+          <small class='schedule-day-content-text'>AM</small>
+        </div>
+        <div class='schedule-day-content'>
+          <small class='schedule-day-content-text'>morning</small>
+        </div>
+      </div>  
+      <div class='content-row'>
+        <div class='schedule-day-content'>
+          <small class='schedule-day-content-text'>PM</small>
+        </div>
+        <div class='schedule-day-content'>
+          <small class='schedule-day-content-text'>aftnoon</small>
+        </div>
+      </div>  
+      <div class='content-row'>
+        <div class='schedule-day-content'>
+          <small class='schedule-day-content-text'>TA</small>
+        </div>
+        <div class='schedule-day-content'>
+        </div>
+      </div>
+    </div>
+    <%#= @courses = @current_user.course_roles(&:courses).flatten %>
+  <% end %>
+  </div>
+</div>

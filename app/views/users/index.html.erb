@@ -1,0 +1,23 @@
+<div class="ui relaxed divided list">
+<div class="item">
+<i class="large github middle aligned icon"></i>
+<div class="content">
+<h2>List All Students</h2>
+
+    <% @users.each do |user| %>
+        <%= user.first_name %><br/>
+        <%= user.last_name %><br/>
+        <%= user.role %><br/>
+        <%= user.email %><br/>
+        <%if admin_signed_in?%>
+            <%= link_to 'Edit', edit_user_path(@user) %>
+            <%= link_to 'Delete', user_path(@user), method: :delete, data: {confirm: "Are you sure?"} %>
+        <%end%>
+    <% end %>
+
+  </div>
+  </div>
+</div>
+
+
+

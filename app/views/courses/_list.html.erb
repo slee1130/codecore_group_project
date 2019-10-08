@@ -1,0 +1,10 @@
+<p><% @course_roles.count %></p>
+<% @course_roles.each do |course_role| %>
+    <div>
+        <!-- <h2><%#= link_to course_role.title, question_path(question) %></h2> -->
+        <p><%= course_role.user_id %></p>
+
+        <p><%= course_role.role %></p>
+        <hr>
+    </div>
+<% end %>

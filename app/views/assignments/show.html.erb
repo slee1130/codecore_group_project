@@ -1,0 +1,8 @@
+<h3>Show Page</h3>
+
+<h1><%= @assignment.name %></h1>
+<p><%= @assignment.description %></p>
+
+<%= link_to "Edit", edit_assignment_path(@assignment) %>
+|
+<%= link_to "Delete", assignment_path(@assignment), method: :delete, data: {confirm: "Are you sure?"} %>

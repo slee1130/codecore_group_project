@@ -1,0 +1,9 @@
+<%= form_with url: "/course/#{@course_role[0].course}/add_attendance", method: :post, local: true do |f| %>
+    <% f.hidden_field :date, @date %>
+    <% @course_roles.each do |user| %>
+    <h2><%= user.user.full_name %></h2>
+    AM<%= f.check_box "data-AM-#{user.id}" %>
+    PM<%= f.check_box "data-PM-#{user.id}" %>
+    TA<%= f.check_box "data-TA-#{user.id}" %>
+    <% end %>
+<% end %>

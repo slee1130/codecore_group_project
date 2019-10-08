@@ -1,0 +1,10 @@
+
+<p>Archived Courses:</p>
+  <% @courses.each do |course| %>
+  <% if course.is_archived? == true %>
+    <div>
+      <%= course.name %>
+      <hr>
+    </div>
+  <% end %>
+<% end %>

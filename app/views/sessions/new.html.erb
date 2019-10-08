@@ -1,0 +1,26 @@
+<article class="login">
+  <div class='card-tier'>
+    <div class='sign-in-card'>
+      <%= image_tag('logo.png', alt: 'logo', style: "width:100px") %>
+    </div>
+  </div>
+  <div class='card-tier'>
+    <div class='sign-in-card'>
+      <h2 class='sign-in-card-header'>Please Sign In</h1>
+      <div class='sign-in-card-content'>
+        <%= form_tag(sessions_path, method: "POST") do %>
+        <div class='sign-in-field'>
+          <%= label_tag :email %>
+          <%= text_field_tag :email, '', placeholder: 'sdwight@codecore.ca' %>
+        </div>
+        <div class='sign-in-field'>
+          <%= label_tag :password %>
+          <%= password_field_tag :password, '', placeholder: '*******z' %>
+        </div>
+        <div class='sign-in-field'>
+          <%= submit_tag "Login" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</article>

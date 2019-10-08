@@ -1,0 +1,13 @@
+<div class='card'>
+  <div class='card-header'>
+    <h2>Courses</h2>
+  </div>
+  <div class='card-content'>
+    <% @courses.map do |course| %>
+    <div class='course-item'>
+      <p><%= course.name %></p>
+      <small><%= link_to 'View details', course_path(course) %></small>
+    </div>
+  </div>
+  <% end %>
+</div>

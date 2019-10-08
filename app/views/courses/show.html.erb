@@ -1,0 +1,63 @@
+
+    <p><%= @course.name %></p>
+    <p>Course Type:<%= @course.program.name %></p>
+    <p>Start Date:<%= @course.start_date %></p>
+    <p>End Date:<%= @course.end_date %></p>
+    <p>Course Status:<%= @course.status %></p>
+    <p>
+    Instructors:
+    <% @course.instructors.each do |instructor| %></p>
+    <li><%= instructor.full_name%></li>
+    <% end %>
+
+    <p class="description">
+    <p><%= @course.description %></p>
+    </p>
+  <% if admin_signed_in? %>
+    <%= link_to 'Edit', edit_course_path(@course) %>
+    <%= link_to 'Delete', course_path(@course), method: :delete, data: {confirm: "Are you sure?"} %>
+  <% end %>
+    <h2>Course Assignments</h2>
+    <ol>
+      <% @course_assignments[0..2].each do |course_assignment| %>
+      <li>
+        <%= link_to(
+          course_assignment.assignment.name, course_course_assignment_submissions_path(@course, course_assignment)
+        )%>
+      </li>
+      <% end %>
+    </ol>
+
+   <%=link_to "View More", course_course_assignments_path(@course)%>
+<%if admin_signed_in?%>
+<div>
+<h2>Instructors</h2>
+  <% @instructors.each do |user| %>
+    <div>
+        <%= user.email %><br/>
+        <%= link_to user.full_name, user_path(user)%>
+    </div>
+    <% end %>
+  </div>
+
+<div>
+<h2>Markers</h2>
+  <% @markers.each do |user| %>
+    <div>
+        <%= user.email %><br/>
+        <%= link_to user.full_name, user_path(user)%>
+    </div>
+    <% end %>
+  </div>
+
+<div>
+<h2>Enrolled</h2>
+  <% @enrolled.each do |user| %>
+    <div>
+        <%= user.email %><br/>
+        <%= link_to user.full_name, user_path(user)%>
+    </div>
+  <% end %>
+  </div>
+  <% end %>
+
